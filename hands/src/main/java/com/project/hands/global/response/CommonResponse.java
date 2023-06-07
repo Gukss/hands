@@ -27,7 +27,6 @@ import lombok.Setter;
 @Builder
 public class CommonResponse {
 
-
 	private int code;
 	private String message;
 
