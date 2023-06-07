@@ -11,6 +11,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.project.hands.domain.user.dto.CreateUserRequest;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -59,4 +61,14 @@ public class User extends BaseTimeEntity{
 	@JoinColumn(name = "disability_id", nullable = false)
 	@NotNull
 	private Disability disability;
+
+	public static User create(CreateUserRequest createUserRequest, Disability disability){
+		return User.builder()
+			.email(createUserRequest.getEmail())
+			.password(createUserRequest.getPassword())
+			.name(createUserRequest.getName())
+			.isDeleted(false)
+			.disability(disability)
+			.build();
+	}
 }

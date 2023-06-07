@@ -13,6 +13,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
 
+import com.project.hands.domain.help.dto.CreateHelpRequest;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -66,7 +68,18 @@ public class Help extends BaseTimeEntity{
 	private User requestUser;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "response_user_id", nullable = false)
+	@JoinColumn(name = "response_user_id")
 	@NotNull
 	private User responseUser;
+
+	public static Help create(User requestUser, CreateHelpRequest createHelpRequest){
+		return Help.builder()
+			.context(createHelpRequest.getContext())
+			.latitude(createHelpRequest.getLatitude().doubleValue())
+			.longitude(createHelpRequest.getLongitude().doubleValue())
+			.isDeleted(false)
+			.isRating(false)
+			.requestUser(requestUser)
+			.build();
+	}
 }

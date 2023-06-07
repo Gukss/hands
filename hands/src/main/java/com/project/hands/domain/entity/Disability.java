@@ -47,4 +47,11 @@ public class Disability {
 	@NotNull
 	@Column(name = "caution",nullable = false, length = 1023)
 	private String caution;
+
+	public static Disability create(DisabilityType disabilityType){
+		return Disability.builder()
+			.type(disabilityType)
+			.caution("temp") //todo: 어떻게 가지고 올 지 생각해보자
+			.build();
+	}
 }

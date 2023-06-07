@@ -27,4 +27,16 @@ public enum DisabilityType {
 	public String getDescription() {
 		return description;
 	}
+
+	public static DisabilityType convert(String type){ //자동으로 변환돼서 들어오기 때문에 필요없다.
+		//todo: configuration으로 등록해
+		// 모든 경우에 적용할 수 있다.
+		// https://javanitto.tistory.com/43
+		for(DisabilityType t: DisabilityType.values()){
+			if(t.description.equals(type)){
+				return t;
+			}
+		}
+		throw new IllegalArgumentException("일치하는 장애유형이 없습니다.");
+	}
 }

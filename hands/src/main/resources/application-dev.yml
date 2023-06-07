@@ -5,6 +5,8 @@ server:
       enabled: false
   servlet:
     context-path: /api
+    encoding:
+      charset: UTF-8
 
 spring:
   config:
