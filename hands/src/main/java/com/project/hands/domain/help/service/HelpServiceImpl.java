@@ -8,9 +8,11 @@ import com.project.hands.domain.entity.User;
 import com.project.hands.domain.help.dto.CreateHelpRequest;
 import com.project.hands.domain.help.repository.HelpRepository;
 import com.project.hands.domain.user.repository.UserRepository;
-import com.project.hands.global.response.CommonResponse;
+import com.project.hands.global.exception.CustomException;
+import com.project.hands.global.exception.ErrorCode;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  *packageName    : com.project.hands.domain.help.service
@@ -26,6 +28,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
+@Slf4j
 public class HelpServiceImpl implements HelpService{
 
 	private final HelpRepository helpRepository;
@@ -34,7 +37,8 @@ public class HelpServiceImpl implements HelpService{
 	@Override
 	@Transactional(readOnly = false)
 	public long createHelp(CreateHelpRequest createHelpRequest) {
-		User user = userRepository.findById(1L).get(); //todo: 예외처리하기
+		//todo: 토큰으로 변경하기
+		User user = userRepository.findById(1L).orElseThrow(()->new CustomException(ErrorCode.NOT_FOUND_USER));
 		Help help = Help.create(user, createHelpRequest);
 		Help save = helpRepository.save(help);
 		return save.getId();

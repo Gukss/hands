@@ -1,5 +1,10 @@
 package com.project.hands.global.exception;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 /**
  *packageName    : com.project.hands.global.exception
  * fileName       : NotFoundException
@@ -11,20 +16,23 @@ package com.project.hands.global.exception;
  * -----------------------------------------------------------
  * 2023-06-06        dongk       최초 생성
  */
-public class NotFoundException extends RuntimeException{
-	public NotFoundException() {
+@Getter
+@AllArgsConstructor
+public class CustomException extends RuntimeException{
+	ErrorCode errorCode;
+	public CustomException() {
 		super();
 	}
 
-	public NotFoundException(String message) {
+	public CustomException(String message) {
 		super(message);
 	}
 
-	public NotFoundException(String message, Throwable cause) {
+	public CustomException(String message, Throwable cause) {
 		super(message, cause);
 	}
 
-	public NotFoundException(Throwable cause) {
+	public CustomException(Throwable cause) {
 		super(cause);
 	}
 }

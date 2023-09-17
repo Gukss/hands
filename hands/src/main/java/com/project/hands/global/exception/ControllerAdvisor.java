@@ -21,8 +21,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RestControllerAdvice
 public class ControllerAdvisor {
-	@ExceptionHandler(NotFoundException.class)
-	public CommonResponse notFoundExceptionHandler(){
-		return null;
+	@ExceptionHandler(CustomException.class)
+	public CommonResponse customExceptionHandler(CustomException e){
+		return CommonResponse.createErrorCommonResponse(e.getErrorCode());
 	}
 }

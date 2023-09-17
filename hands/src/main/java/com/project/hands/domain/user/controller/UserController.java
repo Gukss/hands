@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.project.hands.domain.help.dto.CreateHelpRequest;
 import com.project.hands.domain.user.dto.CreateUserRequest;
 import com.project.hands.domain.user.service.UserService;
+import com.project.hands.global.exception.SuccessCode;
 import com.project.hands.global.response.CommonResponse;
+import com.project.hands.global.response.ResponseService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,10 +33,11 @@ import lombok.extern.slf4j.Slf4j;
 public class UserController {
 
 	private final UserService userService;
+	private final ResponseService responseService;
 
 	@PostMapping
 	public CommonResponse createUser(@RequestBody CreateUserRequest createUserRequest){
 		long user = userService.createUser(createUserRequest);
-		return CommonResponse.createSuccessCommonResponse();
+		return responseService.getSuccessResponse(SuccessCode.SUCCESS);
 	}
 }

@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.hands.domain.help.dto.CreateHelpRequest;
 import com.project.hands.domain.help.service.HelpService;
+import com.project.hands.global.exception.SuccessCode;
 import com.project.hands.global.response.CommonResponse;
+import com.project.hands.global.response.ResponseService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,10 +29,10 @@ import lombok.RequiredArgsConstructor;
 public class HelpController {
 
 	private final HelpService helpService;
-
+	private final ResponseService responseService;
 	@PostMapping
 	public CommonResponse createHelp(CreateHelpRequest createHelpRequest){
 		long help = helpService.createHelp(createHelpRequest);
-		return null;
+		return responseService.getSuccessResponse(SuccessCode.SUCCESS);
 	}
 }

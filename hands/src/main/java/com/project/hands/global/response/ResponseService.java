@@ -2,6 +2,8 @@ package com.project.hands.global.response;
 
 import org.springframework.stereotype.Service;
 
+import com.project.hands.global.exception.SuccessCode;
+
 /**
  *packageName    : com.project.hands.global.response
  * fileName       : ResponseService
@@ -15,7 +17,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ResponseService {
-	public CommonResponse getSuccessResponse(){
-		return CommonResponse.createSuccessCommonResponse();
+	public CommonResponse getSuccessResponse(SuccessCode s){
+		return CommonResponse.createSuccessCommonResponse(s);
 	}
 }

@@ -1,5 +1,6 @@
 package com.project.hands.global.response;
 
+import com.project.hands.global.exception.ErrorCode;
 import com.project.hands.global.exception.SuccessCode;
 
 import lombok.AccessLevel;
@@ -30,10 +31,17 @@ public class CommonResponse {
 	private int code;
 	private String message;
 
-	public static CommonResponse createSuccessCommonResponse(){
+	public static CommonResponse createSuccessCommonResponse(SuccessCode s){
 		return CommonResponse.builder()
-			.code(SuccessCode.SUCCESS.getCode())
-			.message(SuccessCode.SUCCESS.getMessage())
+			.code(s.getCode())
+			.message(s.getMessage())
+			.build();
+	}
+
+	public static CommonResponse createErrorCommonResponse(ErrorCode e){
+		return CommonResponse.builder()
+			.code(e.getCode())
+			.message(e.getMessage())
 			.build();
 	}
 }
